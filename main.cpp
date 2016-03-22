@@ -17,7 +17,7 @@ using std::endl;
 int* arrayFill(int size);
 void arrayPrint(int* array, int size);
 int groupSearch(int* array, int size);
-int binarySearch(int* posBegin, int posEnd);
+int binarySearchUnimodal(int* array, int size);
 
 int main(void) {
   int n;
@@ -50,22 +50,36 @@ int groupSearch(int* array, int size) {
 
   for (int i = 1; i < size; i *= 2) {
     if (array[i] <= array[posCurrent]) {
-      posFound = binarySearch(array + posCurrent, i-posCurrent);
-      break;
+      posFound = posCurrent
+          + binarySearchUnimodal(array + posCurrent, i - posCurrent);
+      return array[posFound];
     }
     posCurrent = i;
   }
 
   if (posCurrent < size && array[size - 1] <= array[posCurrent]
-      && posFound == -1)
-    cout << "after cycle position found between: [" << posCurrent << ", "
-         << size - 1 << "]" << endl;
-  return posFound;
+      && posFound == -1) {
+    posFound = posCurrent
+        + binarySearchUnimodal(array + posCurrent, size - 1 - posCurrent);
+  }
+//    cout << "after cycle position found between: [" << posCurrent << ", "
+//         << size - 1 << "]" << endl;
+  return array[posFound];
 }
 
-int binarySearch(int* posBegin, int posEnd) {
-  for (int i = 0; i <= posEnd; ++i) {
-    cout << "i: " << i << "element: " << posBegin[i] << endl;
+int binarySearchUnimodal(int* array, int size) {
+  int first = 0;
+  int last = size;
+  int mid;
+  while (first < last) {
+    mid = (first + last) / 2;
+    if (array[mid] > array[mid - 1] && array[mid] > array[mid + 1]) {
+      return mid;
+    } else if (array[mid] < array[mid + 1] && size >= mid + 1) {
+      first = mid;
+    } else if (array[mid] > array[mid + 1] && size >= mid + 1) {
+      last = mid;
+    }
   }
-  return -500;
+  return mid;
 }
