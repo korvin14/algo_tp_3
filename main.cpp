@@ -25,6 +25,7 @@ int main(void) {
   // array = new int[n];
   array = arrayFill(n);
   arrayPrint(array, n);
+  delete[] array;
   return 0;
 }
 
