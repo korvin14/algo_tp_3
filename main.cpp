@@ -26,7 +26,6 @@ int main(void) {
   // array = new int[n];
   array = arrayFill(n);
   cout << groupSearch(array, n) << " just testing" << endl;
-//  arrayPrint(array, n);
   delete[] array;
   return 0;
 }
@@ -46,12 +45,6 @@ void arrayPrint(int* array, int size) {
 }
 
 int groupSearch(int* array, int size) {
-//  if (size == 1) {
-//    return array[0];
-//  }
-//  if (size == 2 || size == 3) {
-//    return array[1];
-//  }
   int posFound = -1;
   int posCurrent = 0;
 
