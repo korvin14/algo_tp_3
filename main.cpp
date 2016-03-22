@@ -12,7 +12,6 @@
 
 using std::cout;
 using std::cin;
-using std::endl;
 
 int* arrayFill(int size);
 void arrayPrint(int* array, int size);
@@ -25,7 +24,7 @@ int main(void) {
   cin >> n;
   // array = new int[n];
   array = arrayFill(n);
-  cout << groupSearch(array, n) << " just testing" << endl;
+  cout << groupSearch(array, n);
   delete[] array;
   return 0;
 }
