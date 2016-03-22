@@ -12,6 +12,7 @@
 
 using std::cout;
 using std::cin;
+using std::endl;
 
 int* arrayFill(int size);
 void arrayPrint(int* array, int size);
@@ -24,7 +25,8 @@ int main(void) {
   cin >> n;
   // array = new int[n];
   array = arrayFill(n);
-  arrayPrint(array, n);
+  cout << groupSearch(array, n) << " just testing" << endl;
+//  arrayPrint(array, n);
   delete[] array;
   return 0;
 }
@@ -41,4 +43,29 @@ void arrayPrint(int* array, int size) {
   for (int i = 0; i < size; ++i) {
     cout << array[i];
   }
+}
+
+int groupSearch(int* array, int size) {
+//  if (size == 1) {
+//    return array[0];
+//  }
+//  if (size == 2 || size == 3) {
+//    return array[1];
+//  }
+  int posFound = -1;
+  int posCurrent = 0;
+
+  for (int i = 1; i < size; i *= 2) {
+    if (array[i] <= array[posCurrent]) {
+      cout << "position found between: [" << posCurrent << ", " << i << "]"
+           << endl;
+      break;
+    }
+    posCurrent = i;
+  }
+
+  if (posCurrent < size - 1 && array[size - 1] <= array[posCurrent] && posFound == -1)
+    cout << "after cycle position found between: [" << posCurrent << ", "
+         << size - 1 << "]" << endl;
+  return posFound;
 }
