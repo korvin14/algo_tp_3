@@ -12,9 +12,32 @@
 
 using std::cout;
 using std::cin;
-using std::endl;
+
+int* arrayFill(int size);
+void arrayPrint(int* array, int size);
+int groupSearch(int* array, int size);
+int binarySearch(int* posBegin, int posEnd);
 
 int main(void) {
-  cout << "Hello bitches" << endl;
+  int n;
+  int* array = NULL;
+  cin >> n;
+  // array = new int[n];
+  array = arrayFill(n);
+  arrayPrint(array, n);
   return 0;
+}
+
+int* arrayFill(int size) {
+  int* array = new int[size];
+  for (int i = 0; i < size; ++i) {
+    cin >> array[i];
+  }
+  return array;
+}
+
+void arrayPrint(int* array, int size) {
+  for (int i = 0; i < size; ++i) {
+    cout << array[i];
+  }
 }
