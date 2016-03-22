@@ -64,7 +64,7 @@ int groupSearch(int* array, int size) {
     posCurrent = i;
   }
 
-  if (posCurrent < size - 1 && array[size - 1] <= array[posCurrent] && posFound == -1)
+  if (posCurrent < size && array[size - 1] <= array[posCurrent] && posFound == -1)
     cout << "after cycle position found between: [" << posCurrent << ", "
          << size - 1 << "]" << endl;
   return posFound;
