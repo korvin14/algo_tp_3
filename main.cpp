@@ -50,15 +50,22 @@ int groupSearch(int* array, int size) {
 
   for (int i = 1; i < size; i *= 2) {
     if (array[i] <= array[posCurrent]) {
-      cout << "position found between: [" << posCurrent << ", " << i << "]"
-           << endl;
+      posFound = binarySearch(array + posCurrent, i-posCurrent);
       break;
     }
     posCurrent = i;
   }
 
-  if (posCurrent < size && array[size - 1] <= array[posCurrent] && posFound == -1)
+  if (posCurrent < size && array[size - 1] <= array[posCurrent]
+      && posFound == -1)
     cout << "after cycle position found between: [" << posCurrent << ", "
          << size - 1 << "]" << endl;
   return posFound;
+}
+
+int binarySearch(int* posBegin, int posEnd) {
+  for (int i = 0; i <= posEnd; ++i) {
+    cout << "i: " << i << "element: " << posBegin[i] << endl;
+  }
+  return -500;
 }
